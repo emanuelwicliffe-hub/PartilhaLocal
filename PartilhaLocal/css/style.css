@@ -1,0 +1,296 @@
+/* Remove margens e espaçamentos padrão do navegador */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo geral da página */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f4ff;
+    color: #1f1b2e;
+}
+
+/* Cabeçalho do site */
+.cabecalho {
+    background-color: white;
+    padding: 20px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Nome PartilhaLocal */
+.logo h1 {
+    font-size: 28px;
+    color: #1f1b2e;
+}
+
+/* Deixa só a palavra Local roxa */
+.logo span {
+    color: #6c2bd9;
+}
+
+/* Remove as bolinhas da lista do menu */
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+/* Estilo dos links do menu */
+nav a {
+    text-decoration: none;
+    color: #1f1b2e;
+    font-weight: bold;
+}
+
+/* Quando passar o rato por cima do link */
+nav a:hover {
+    color: #6c2bd9;
+}
+
+/* Espaçamento geral das secções */
+section {
+    padding: 50px 60px;
+}
+
+/* Primeira secção da página */
+main section:first-child {
+    background-color: white;
+}
+
+/* Título principal */
+main section:first-child h2 {
+    font-size: 46px;
+    color: #1f1b2e;
+    margin-bottom: 20px;
+}
+
+/* Parágrafo principal */
+main section:first-child p {
+    font-size: 18px;
+    margin-bottom: 25px;
+    color: #4d465f;
+}
+
+/* Botões da primeira secção */
+main section:first-child a {
+    display: inline-block;
+    margin-right: 15px;
+    padding: 14px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Primeiro botão */
+main section:first-child a:first-of-type {
+    background-color: #6c2bd9;
+    color: white;
+}
+
+/* Segundo botão */
+main section:first-child a:last-of-type {
+    border: 2px solid #6c2bd9;
+    color: #6c2bd9;
+}
+
+/* Títulos das outras secções */
+section h2 {
+    margin-bottom: 25px;
+    font-size: 28px;
+}
+
+/* Caixas das vantagens e materiais 
+section div {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 12px;
+}
+    */
+
+/* Títulos dentro das caixas */
+section div h3 {
+    margin-bottom: 10px;
+    color: #1f1b2e;
+}
+
+/* Texto dentro das caixas */
+section div p {
+    color: #4d465f;
+}
+
+/*Organizar as vantagens lado a lado */
+.lista-vantagens {
+    display: flex;
+    gap: 20px;
+}
+
+/* Cada caixa de vantagem */
+.caixa-vantagem {
+    flex: 1;
+    background-color: white;
+    padding: 25px;
+    border-radius: 12px;
+}
+
+/*organizar os materiais em coluna */
+.lista-materiais {
+    display: flex;
+    gap: 20px;
+}
+
+/* Cada caixa de material */
+.card-material {
+    flex: 1;
+    background-color: white;
+    padding: 25px;
+    border-radius: 12px;
+}
+
+.card-material,
+.caixa-vantagem {
+    /* Suaviza o movimento, tanto ao entrar como ao sair com o rato */
+    transition: transform 0.3s;
+}
+
+.card-material:hover,
+.caixa-vantagem:hover {
+    /* Move a caixa 5 píxeis para cima */
+    transform: translateY(-5px);
+}
+
+.hero {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.texto-hero {
+    max-width: 600px;
+}
+
+.texto-hero h2 {
+    font-size: 52px;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.texto-hero p {
+    font-size: 18px;
+    color: #4d465f;
+    margin-bottom: 25px;
+}
+
+.botoes-hero {
+    display: flex;
+    gap: 15px;
+}
+
+.botoes-hero a {
+    display: inline-block;
+    padding: 14px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.botoes-hero a:first-child {
+    background-color: #6c2bd9;
+    color: white;
+}
+
+.botoes-hero a:last-child {
+    border: 2px solid #6c2bd9;
+    color: #6c2bd9;
+}
+
+.imagem-hero {
+    width: 380px;
+    height: 280px;
+    background: linear-gradient(135deg, #efe7ff, #d8c4ff);
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.circulo-hero {
+    width: 190px;
+    height: 190px;
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 0 8px 20px rgba(108, 43, 217, 0.18);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.circulo-hero span {
+    font-size: 55px;
+}
+
+.circulo-hero p {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #6c2bd9;
+}
+
+/* Area mobile */
+@media (max-width: 768px) {
+    .cabecalho {
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    /*toda seçao da paginas*/
+    section {
+        padding: 30px 20px;
+    }
+
+    /* Seleciona a área principal de a apresentação */
+    .hero {
+        flex-direction: column;
+    }
+
+    /*Seleciona o titulo da primeira secção */
+    main section:first-child h2 {
+        font-size: 34px;
+    }
+
+    /* Seleciona o grupo dos dois botões hero*/
+    .botoes-hero {
+        flex-wrap: wrap;
+    }
+
+    /* Seleciona os botoes da primeira secção */
+    main section:first-child .botoes-hero a {
+        margin-right: 0;
+    }
+
+    /* Seleciona o fundo roxo*/
+    .imagem-hero {
+        width: 100%;
+        height: 380px;
+    }
+
+
+    .lista-vantagens,
+    .lista-materiais {
+        flex-direction: column;
+    }
+
+}
