@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do material | PartilhaLocal</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header class="cabecalho">
+        <div class="logo">
+            <h1>Partilha<span>Local</span></h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="explorar.html">Explorar</a></li>
+                <li><a href="#">Como funciona</a></li>
+                <li><a href="#">Sobre nós</a></li>
+                <li><a href="#">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="pagina-material">
+        <article class="detalhe-material">
+            <a class="link-voltar" href="explorar.html">← Voltar aos materiais</a>
+
+            <p id="mensagem-material" role="status"></p>
+
+            <!-- Os detalhes só aparecem depois de encontrar o material. -->
+            <div id="conteudo-material" hidden>
+                <h2 id="nome-material"></h2>
+
+                <p>Material de exemplo para demonstração do PartilhaLocal.</p>
+
+                <dl class="dados-material">
+                    <dt>Localidade</dt>
+                    <dd id="localidade-material"></dd>
+
+                    <dt>Disponibilidade</dt>
+                    <dd id="estado-material"></dd>
+
+                    <dt>Categoria</dt>
+                    <dd id="categoria-material"></dd>
+                </dl>
+
+                <h3>Descrição</h3>
+                <p id="descricao-material"></p>
+
+                <button class="botao-pedido" type="button" disabled aria-describedby="aviso-pedido">
+                    Pedir emprestado
+                </button>
+
+                <p id="aviso-pedido">
+                    Os pedidos de empréstimo ainda não estão disponíveis nesta demonstração.
+                </p>
+            </div>
+        </article>
+    </main>
+    <footer class="rodape">
+        <h2>Partilha<span>Local</span></h2>
+        <p>Partilhe materiais. Aproxime a comunidade.</p>
+        <small>Projeto desenvolvido em contexto de formação.</small>
+    </footer>
+    <!-- Os dados precisam de carregar antes do código que os utiliza. -->
+    <script src="js/materiais.js"></script>
+    <script src="js/material.js"></script>
+</body>
+
+</html>

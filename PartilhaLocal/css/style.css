@@ -242,6 +242,70 @@ section div p {
     color: #6c2bd9;
 }
 
+/*seleciona a ligaçao do menu*/
+nav a[aria-current="page"] {
+    color: #6c2bd9;
+    text-decoration: underline;
+    text-underline-offset: 6px;
+}
+
+/*Seleciona o titulo da apresentaçao no Explorar. */
+.pagina-explorar .pagina-explorar h2 {
+    font-size: 34px;
+    margin-bottom: 15px;
+}
+
+/*seleciona a descriçao da apresentaçao na pagina explorar.*/
+.pagina-explorar .intro-explorar p {
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+.filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.campo-filtro {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1 1 220px;
+    min-width: 0;
+}
+
+/*Destaca a legenda do campo*/
+.campo-filtro label {
+    font-weight: bold;
+}
+
+.campo-filtro input,
+.campo-filtro select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #766b8a;
+    border-radius: 8px;
+    font: inherit;
+    background-color: white;
+    color: #1f1b2e;
+}
+
+.campo-filtro input:focus,
+.campo-filtro select:focus {
+    outline: 2px solid #6c2bd9;
+    outline-offset: 2px;
+}
+
+#resultado-pesquisa {
+    margin-bottom: 20px;
+}
+
+
+
+
+
 /* Area mobile */
 @media (max-width: 768px) {
     .cabecalho {
@@ -292,5 +356,162 @@ section div p {
     .lista-materiais {
         flex-direction: column;
     }
+
+}
+
+/*Estilo Rodape */
+.rodape {
+    background-color: #33236d;
+    color: white;
+    text-align: center;
+    padding: 35px 20px;
+}
+
+/*O nome do projeto no rodapé*/
+.rodape h2 {
+    font-size: 24px;
+    margin-bottom: 12px;
+}
+
+/*A palavra span no nome do projeto*/
+.rodape h2 span {
+    color: #c4a5ff;
+}
+
+/*Selecionar a frase de apresentação no rodapé*/
+.rodape p {
+    line-height: 1.5;
+    margin-bottom: 18px;
+}
+
+/* Selecionar a nota dobre o contexto do projeto no rodapé */
+.rodape small {
+    display: block;
+    font-size: 14px;
+    color: #ddd5ec;
+}
+
+/* Define o espaço à volta da ficha do material. */
+.pagina-material {
+    padding: 30px 20px;
+}
+
+
+/* Define a caixa que apresenta os detalhes. */
+.detalhe-material {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 25px;
+    background-color: white;
+    border-radius: 12px;
+}
+
+
+
+/* Estiliza a ligação de regresso à lista. */
+.link-voltar {
+    display: inline-block;
+
+    margin-bottom: 24px;
+
+    color: #6c2bd9;
+
+}
+
+
+/* Define a aparência do nome do material. */
+.detalhe-material h2 {
+    font-size: 32px;
+
+    margin-bottom: 16px;
+
+}
+
+
+
+/* Separa o título da descrição do seu texto. */
+.detalhe-material h3 {
+    margin-bottom: 10px;
+
+}
+
+
+
+/* Melhora a leitura dos parágrafos da ficha. */
+.detalhe-material p {
+    line-height: 1.6;
+
+    color: #4d465f;
+
+}
+
+
+/* Separa a lista de características dos restantes conteúdos. */
+.dados-material {
+    margin: 24px 0;
+
+}
+
+
+
+/* Destaca o nome de cada característica. */
+.dados-material dt {
+    font-weight: bold;
+
+    margin-bottom: 4px;
+
+}
+
+
+
+/* Define o espaço após cada valor. */
+.dados-material dd {
+    margin-bottom: 16px;
+    /* Separa uma característica da seguinte. */
+}
+
+
+
+/* Define a apresentação do botão de empréstimo. */
+.botao-pedido {
+    margin: 24px 0 12px;
+
+    padding: 14px 22px;
+
+    border: 0;
+
+    border-radius: 8px;
+
+    font: inherit;
+
+    font-weight: bold;
+
+    background-color: #6c2bd9;
+
+    color: white;
+
+}
+
+
+
+/* Identifica visualmente o estado desativado. */
+.botao-pedido:disabled {
+    background-color: #655c75;
+
+    cursor: not-allowed;
+
+}
+
+
+
+/* Estiliza a ligação dos cartões para a página de detalhes. */
+.card-material .link-detalhes {
+    display: inline-block;
+
+    margin-top: 15px;
+
+    color: #6c2bd9;
+
+    font-weight: bold;
 
 }

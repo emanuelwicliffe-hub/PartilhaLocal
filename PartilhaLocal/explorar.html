@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explorar materiais | PartilhaLocal </title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header class="cabecalho">
+        <div class="logo">
+            <h1>Partilha<span>Local</span></h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="explorar.html" aria-current="page">Explorar</a></li>
+                <li><a href="#">Como funciona</a></li>
+                <li><a href="#">Sobre nós</a></li>
+                <li><a href="#">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="pagina-explorar">
+        <section class="intro-explorar">
+            <h2>Explorar materiais disponíveis</h2>
+            <p>Encontre materiais que você pode emprestar ou solicitar na sua comunidade.</p>
+        </section>
+
+        <section class="materiais">
+            <h2>Materiais da comunidade</h2>
+            <div class="filtros">
+                <div class="campo-filtro">
+                    <label for="pesquisa-material">Pesquisar material</label>
+                    <input type="search" id="pesquisa-material" placeholder="Ex.: Berbequim">
+                </div>
+                <!--lista de localidade -->
+                <div class="campo-filtro">
+                    <label for="filtro-localidade">Localidade</label>
+                    <select id="filtro-localidade">
+                        <option value="">Todas as Localidades</option>
+                        <option value="Leiria">Leiria</option>
+                        <option value="Lisboa">Lisboa</option>
+                        <option value="Porto">Porto</option>
+                    </select>
+                </div>
+            </div>
+            <!-- Mensagem que será anuciada por leitores de ecra.-->
+            <p id="resultado-pesquisa" role="status"></p>
+            <div class="lista-materiais">
+                <div class="card-material" data-nome="Berbequim" data-localidade="Leiria">
+                    <h3>Berbequim</h3>
+                    <p>Localidade: Leiria</p>
+                    <p>Estado: Disponível</p>
+                    <a class="link-detalhes" href="material.html?id=1">
+                        Ver detalhes do berbequim
+                    </a>
+                </div>
+
+                <div class="card-material" data-nome="Martelo" data-localidade="Lisboa">
+                    <h3>Martelo</h3>
+                    <p>Localidade: Lisboa</p>
+                    <p>Estado: Emprestado</p>
+                    <a class="link-detalhes" href="material.html?id=2">
+                        Ver detalhes do martelo
+                    </a>
+                </div>
+
+                <div class="card-material" data-nome="Serra eletrica" data-localidade="Porto">
+                    <h3>Serra elétrica</h3>
+                    <p>Localidade: Porto</p>
+                    <p>Estado: Disponível</p>
+                    <a class="link-detalhes" href="material.html?id=3">
+                        Ver detalhes da serra
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="rodape">
+        <h2>Partilha<span>Local</span></h2>
+        <p>Partilhe materiais. Aproxime a comunidade.</p>
+        <small>Projeto desenvolvido em contexto de formação.</small>
+    </footer>
+    <script src="js/explorar.js"></script>
+</body>
+
+</html>
