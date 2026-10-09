@@ -514,4 +514,83 @@ nav a[aria-current="page"] {
 
     font-weight: bold;
 
+
+}
+
+/*material style*/
+.pagina-publicar {
+    padding: 30px 20px;
+}
+
+.pagina-publicar .painel-publicar {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 25px;
+    background-color: white;
+    border-radius: 12px;
+}
+
+/* Limita estas regras à nova página. */
+.pagina-publicar .painel-publicar h2 {
+    font-size: 32px;
+    margin-bottom: 16px;
+}
+
+.pagina-publicar .painel-publicar p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+#form-publicar {
+    margin-top: 24px;
+}
+
+.campo-formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.campo-formulario label {
+    font-weight: bold;
+}
+
+.campo-formulario input,
+.campo-formulario select,
+.campo-formulario textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #766b8a;
+    border-radius: 8px;
+    font: inherit;
+    color: #1f1b2e;
+    background-color: white;
+}
+
+.campo-formulario textarea {
+    resize: vertical;
+}
+
+.campo-formulario input:focus,
+.campo-formulario select:focus,
+.campo-formulario textarea:focus {
+    outline: 2px solid #6c2bd9;
+    outline-offset: 2px;
+}
+
+.botao-validar {
+    padding: 14px 22px;
+    border: 0;
+    border-radius: 8px;
+    background-color: #6c2bd9;
+    color: white;
+    font: inherit;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#mensagem-publicacao {
+    margin-top: 16px;
 }

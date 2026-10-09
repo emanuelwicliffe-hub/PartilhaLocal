@@ -1,6 +1,48 @@
+const listaMateriais = document.querySelector(".lista-materiais");
+
+// Cria um cartão para cada material da lista partilhada.
+materiais.forEach(function (material) {
+    const cartao = document.createElement("div");
+    cartao.className = "card-material";
+
+    // Mantém os atributos que a pesquisa atual utiliza.
+    cartao.dataset.nome = material.nome;
+    cartao.dataset.localidade = material.localidade;
+
+    const titulo = document.createElement("h3");
+    titulo.textContent = material.nome;
+
+    const localidade = document.createElement("p");
+    localidade.textContent = `Localidade: ${material.localidade}`;
+
+    const estado = document.createElement("p");
+    estado.textContent = `Estado: ${material.estado}`;
+
+    const link = document.createElement("a");
+    link.className = "link-detalhes";
+    link.href = `material.html?id=${encodeURIComponent(material.id)}`;
+    link.textContent = `Ver detalhes: ${material.nome}`;
+
+    cartao.append(titulo, localidade, estado, link);
+    listaMateriais.append(cartao);
+});
 const campoPesquisa = document.querySelector("#pesquisa-material");
 
 const filtroLocalidade = document.querySelector("#filtro-localidade");
+
+const localidades = new Set();
+
+//Guarda a localidade
+materiais.forEach(function (material) {
+    localidades.add(material.localidade);
+});
+// Acrescenta as localidades
+localidades.forEach(function (localidade) {
+    const opcao = document.createElement("option");
+    opcao.value = localidade;
+    opcao.textContent = localidade;
+    filtroLocalidade.append(opcao);
+});
 
 const cartoes = document.querySelectorAll(".pagina-explorar .card-material");
 

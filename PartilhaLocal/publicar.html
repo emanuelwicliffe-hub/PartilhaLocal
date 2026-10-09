@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publicar material | PartilhaLocal</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header class="cabecalho">
+        <div class="logo">
+            <h1>Partilha<span>Local</span></h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="explorar.html">Explorar</a></li>
+                <li><a href="#">Como funciona</a></li>
+                <li><a href="#">Sobre nós</a></li>
+                <li><a href="#">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="pagina-publicar">
+        <section class="painel-publicar">
+            <h2>Publicar material</h2>
+            <p>Preencha os dados do material que pretende emprestar.</p>
+            <p id="aviso-publicacao">
+                Formulário de demonstração: os dados ainda não serão guardados.
+            </p>
+
+            <form id="form-publicar" aria-describedby="aviso-publicacao">
+                <div class="campo-formulario">
+                    <label for="nome">Nome do material</label>
+                    <input type="text" id="nome" name="nome" placeholder="Ex.: Berbequim" minlength="3" maxlength="80"
+                        required>
+                </div>
+
+                <div class="campo-formulario">
+                    <label for="categoria">Categoria</label>
+                    <select id="categoria" name="categoria" required>
+                        <option value="">Selecione uma categoria</option>
+                        <option value="Ferramentas">Ferramentas</option>
+                        <option value="Cozinha">Cozinha</option>
+                        <option value="Limpeza">Limpeza</option>
+                        <option value="Jardim">Jardim</option>
+                        <option value="Eletrónica">Eletrónica</option>
+                        <option value="Outros">Outros</option>
+                    </select>
+                </div>
+
+                <div class="campo-formulario">
+                    <label for="localidade">Localidade</label>
+                    <input type="text" id="localidade" name="localidade" placeholder="Ex.: Leiria" minlength="2"
+                        maxlength="80" required>
+                </div>
+
+                <div class="campo-formulario">
+                    <label for="descricao">Descrição</label>
+                    <textarea id="descricao" name="descricao" rows="5"
+                        placeholder="Descreva o material e as condições de utilização." minlength="10" maxlength="1000"
+                        required></textarea>
+                </div>
+
+                <button type="submit" class="botao-validar">Validar dados</button>
+                <p id="mensagem-publicacao" role="status"></p>
+            </form>
+        </section>
+    </main>
+    <footer class="rodape">
+        <h2>Partilha<span>Local</span></h2>
+        <p>Partilhe materiais. Aproxime a comunidade.</p>
+        <small>Projeto desenvolvido em contexto de formação.</small>
+    </footer>
+    <!-- Os dados precisam de carregar antes do código que os utiliza. -->
+    <script src="js/publicar.js"></script>
+</body>
+
+</html>
