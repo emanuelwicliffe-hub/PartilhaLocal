@@ -594,3 +594,333 @@ nav a[aria-current="page"] {
 #mensagem-publicacao {
     margin-top: 16px;
 }
+
+/*style da foto*/
+
+#preview-fotografia {
+    width: 100%;
+    max-width: 400px;
+    max-height: 300px;
+    object-fit: contain;
+    border-radius: 12px;
+    align-self: flex-start;
+}
+
+#erro-fotografia {
+    color: #a11919;
+}
+
+/*Register*/
+
+/* Página de registo */
+.pagina-registo {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 12px;
+}
+
+.pagina-registo h2 {
+    color: #6c2bd9;
+    margin-bottom: 10px;
+}
+
+.pagina-registo p {
+    margin-bottom: 20px;
+}
+
+/* Organiza os campos uns por baixo dos outros */
+#form-registo {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#form-registo label {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+#form-registo input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+#form-registo input:focus {
+    outline: 2px solid #6c2bd9;
+}
+
+/* Botão para criar conta */
+#form-registo button {
+    margin-top: 20px;
+    padding: 14px;
+    background-color: #6c2bd9;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#form-registo button:hover {
+    background-color: #5420ad;
+}
+
+/* Corrige a aparência do link Entrar */
+main section.pagina-registo a.link-entrar {
+    display: inline;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    color: #6c2bd9;
+    text-decoration: underline;
+}
+
+/*login*/
+
+/* Página de login */
+.pagina-login {
+    max-width: 450px;
+    margin: 60px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 12px;
+}
+
+.pagina-login h2 {
+    color: #6c2bd9;
+    margin-bottom: 10px;
+}
+
+.pagina-login p {
+    margin-bottom: 20px;
+}
+
+/* Formulário de login */
+#form-login {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#form-login label {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+#form-login input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+#form-login input:focus {
+    outline: 2px solid #6c2bd9;
+}
+
+#form-login button {
+    margin-top: 20px;
+    padding: 14px;
+    background-color: #6c2bd9;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#form-login button:hover {
+    background-color: #5420ad;
+}
+
+.texto-registo {
+    margin-top: 20px;
+}
+
+/* Mantém o link Registe-se como texto */
+main section.pagina-login .texto-registo a {
+    display: inline;
+    padding: 0;
+    border: none;
+    background: none;
+    color: #6c2bd9;
+    text-decoration: underline;
+}
+
+/*MInha conta*/
+/* Botões da página Minha Conta */
+.acoes-conta {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.botao-conta,
+.botao-sair {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 16px;
+    text-decoration: none;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.botao-conta,
+.botao-conta:link,
+.botao-conta:visited,
+.botao-conta:hover {
+    background-color: #6c2bd9;
+    color: #ffffff;
+}
+
+.botao-sair {
+    background-color: white;
+    color: #6c2bd9;
+    border: 2px solid #6c2bd9;
+}
+
+/* Garante contraste no botão Explorar materiais */
+.pagina-registo .acoes-conta a.botao-conta,
+.pagina-registo .acoes-conta a.botao-conta:visited,
+.pagina-registo .acoes-conta a.botao-conta:hover {
+    background-color: #6c2bd9;
+    color: #ffffff;
+}
+
+/*Chat*/
+/* Página do chat */
+.pagina-chat {
+    background-color: #f3f0fa;
+    padding: 40px 20px;
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.painel-chat {
+    background-color: white;
+    width: 100%;
+    max-width: 700px;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.painel-chat h2 {
+    font-size: 42px;
+    margin-bottom: 20px;
+    color: #16133d;
+}
+
+.info-chat {
+    margin-bottom: 20px;
+}
+
+.info-chat p {
+    margin-bottom: 8px;
+    color: #2a2456;
+    font-size: 18px;
+}
+
+/* Caixa das mensagens */
+.mensagens-chat {
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    background-color: #fafafa;
+    min-height: 300px;
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+/* Mensagens */
+.mensagem-proprietario,
+.mensagem-utilizador {
+    max-width: 75%;
+    padding: 12px 14px;
+    border-radius: 14px;
+    line-height: 1.4;
+    font-size: 16px;
+}
+
+.mensagem-proprietario {
+    align-self: flex-start;
+    background-color: #ece7ff;
+    color: #1f1a44;
+    border-bottom-left-radius: 4px;
+}
+
+.mensagem-utilizador {
+    align-self: flex-end;
+    background-color: #6c2bd9;
+    color: white;
+    border-bottom-right-radius: 4px;
+}
+
+/* Formulário */
+.form-chat {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.form-chat input {
+    flex: 1;
+    padding: 14px 16px;
+    border: 1px solid #b9b2d8;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.form-chat input:focus {
+    outline: none;
+    border-color: #6c2bd9;
+}
+
+.form-chat button {
+    padding: 14px 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: #6c2bd9;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.form-chat button:hover {
+    opacity: 0.92;
+}
+
+/* Texto apenas para leitores de ecrã */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* Fotografias dos materiais na página Explorar */
+.imagem-material {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    border-radius: 10px;
+    margin-bottom: 12px;
+}

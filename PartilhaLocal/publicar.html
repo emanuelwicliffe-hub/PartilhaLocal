@@ -17,9 +17,9 @@
             <ul>
                 <li><a href="index.html">Início</a></li>
                 <li><a href="explorar.html">Explorar</a></li>
-                <li><a href="#">Como funciona</a></li>
-                <li><a href="#">Sobre nós</a></li>
-                <li><a href="#">Contato</a></li>
+                <li><a href="/minha-conta">Minha Conta</a></li>
+                <li><a href="login.html">Entrar</a></li>
+                <li><a href="registo.html">Registar</a></li>
             </ul>
         </nav>
     </header>
@@ -29,10 +29,11 @@
             <h2>Publicar material</h2>
             <p>Preencha os dados do material que pretende emprestar.</p>
             <p id="aviso-publicacao">
-                Formulário de demonstração: os dados ainda não serão guardados.
+                Publique um material para que outros utilizadores o possam pedir emprestado.
             </p>
 
-            <form id="form-publicar" aria-describedby="aviso-publicacao">
+            <form id="form-publicar" action="/publicar.html" method="POST" enctype="multipart/form-data"
+                aria-describedby="aviso-publicacao">
                 <div class="campo-formulario">
                     <label for="nome">Nome do material</label>
                     <input type="text" id="nome" name="nome" placeholder="Ex.: Berbequim" minlength="3" maxlength="80"
@@ -64,8 +65,22 @@
                         placeholder="Descreva o material e as condições de utilização." minlength="10" maxlength="1000"
                         required></textarea>
                 </div>
+                <!-- Fotos de publicaçao -->
+                <div class="campo-formulario">
+                    <label for="fotografia">Fotografia do material (opcional)</label>
+                    <input type="file" id="fotografia" name="fotografia" accept="image/jpeg,image/png,image/webp"
+                        aria-describedby="ajuda-fotografia erro-fotografia">
 
-                <button type="submit" class="botao-validar">Validar dados</button>
+                    <small id="ajuda-fotografia">
+                        Escolha uma imagem JPG, PNG ou WebP até 5 MB.
+                    </small>
+
+                    <p id="erro-fotografia" role="status"></p>
+
+                    <img id="preview-fotografia" alt="Pré-visualização da fotografia escolhida" hidden>
+                </div>
+
+                <button type="submit" class="botao-validar">Publicar material</button>
                 <p id="mensagem-publicacao" role="status"></p>
             </form>
         </section>

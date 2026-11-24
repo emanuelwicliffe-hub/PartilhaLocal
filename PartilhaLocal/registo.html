@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registo - PartilhaLocal</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <header class="cabecalho">
+        <div class="logo">
+            <h1>Partilha<span>Local</span></h1>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="explorar.html">Explorar</a></li>
+                <li><a href="/minha-conta">Minha Conta</a></li>
+                <li><a href="login.html">Entrar</a></li>
+                <li><a href="registo.html">Registar</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="pagina-registo">
+            <h2>Criar conta</h2>
+            <p>Registe-se para começar a partilhar materiais.</p>
+
+            <!-- O form agrupa os campos enviados no registo -->
+            <form id="form-registo" action="/registo.html" method="POST">
+
+                <label for="nome">Nome completo</label>
+                <input type="text" id="nome" name="nome" required>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="telefone">Telefone</label>
+                <input type="tel" id="telefone" name="telefone">
+
+                <label for="localidade">Localidade</label>
+                <input type="text" id="localidade" name="localidade">
+
+                <label for="palavra_passe">Palavra-passe</label>
+                <input type="password" id="palavra_passe" name="palavra_passe" minlength="8" required>
+
+                <label for="confirmar_passe">Confirmar palavra-passe</label>
+                <input type="password" id="confirmar_passe" name="confirmar_passe" minlength="8" required>
+
+                <button type="submit">Criar conta</button>
+            </form>
+
+            <p>Já tem uma conta? <a href="login.html" class="link-entrar">Entrar</a></p>
+        </section>
+    </main>
+
+</body>
+<!-- Carregar o JavaScript Responsavel pela validaçao do registro-->
+<script src="js/registo.js"></script>
+
+</html>

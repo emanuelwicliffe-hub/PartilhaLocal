@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Conta - PartilhaLocal</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header class="cabecalho">
+        <div class="logo">
+            <h1>Partilha<span>Local</span></h1>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="explorar.html">Explorar</a></li>
+                <li><a href="/minha-conta">Minha Conta</a></li>
+                <li><a href="login.html">Entrar</a></li>
+                <li><a href="registo.html">Registar</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="pagina-registo">
+            <h2>Minha Conta</h2>
+
+            <p>Bem-vindo, {{ nome }}!</p>
+
+            <p>Aqui poderá gerir os seus materiais e empréstimos.</p>
+            <div class="acoes-conta">
+                <a href="explorar.html" class="botao-conta">
+                    Explorar materiais
+                </a>
+
+                <form action="/terminar-sessao" method="POST">
+                    <button type="submit" class="botao-sair">
+                        Terminar sessão
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

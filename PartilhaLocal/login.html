@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrar - PartilhaLocal</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <header class="cabecalho">
+        <div class="logo">
+            <h1>Partilha<span>Local</span></h1>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="explorar.html">Explorar</a></li>
+                <li><a href="/minha-conta">Minha Conta</a></li>
+                <li><a href="login.html">Entrar</a></li>
+                <li><a href="registo.html">Registar</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="pagina-login">
+            <h2>Entrar na sua conta</h2>
+            <p>Bem-vindo de volta ao PartilhaLocal!</p>
+
+            <form id="form-login" action="/login.html" method="POST">
+                <label for="email-login">Email</label>
+                <input type="email" id="email-login" name="email" required>
+
+                <label for="passe-login">Palavra-passe</label>
+                <input type="password" id="passe-login" name="palavra_passe" required>
+
+                <button type="submit">Entrar</button>
+            </form>
+
+            <p class="texto-registo">
+                Ainda não tem uma conta?
+                <a href="registo.html">Registe-se</a>
+            </p>
+        </section>
+    </main>
+
+</body>
+
+</html>

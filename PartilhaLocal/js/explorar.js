@@ -1,112 +1,122 @@
+
 const listaMateriais = document.querySelector(".lista-materiais");
-
-// Cria um cartão para cada material da lista partilhada.
-materiais.forEach(function (material) {
-    const cartao = document.createElement("div");
-    cartao.className = "card-material";
-
-    // Mantém os atributos que a pesquisa atual utiliza.
-    cartao.dataset.nome = material.nome;
-    cartao.dataset.localidade = material.localidade;
-
-    const titulo = document.createElement("h3");
-    titulo.textContent = material.nome;
-
-    const localidade = document.createElement("p");
-    localidade.textContent = `Localidade: ${material.localidade}`;
-
-    const estado = document.createElement("p");
-    estado.textContent = `Estado: ${material.estado}`;
-
-    const link = document.createElement("a");
-    link.className = "link-detalhes";
-    link.href = `material.html?id=${encodeURIComponent(material.id)}`;
-    link.textContent = `Ver detalhes: ${material.nome}`;
-
-    cartao.append(titulo, localidade, estado, link);
-    listaMateriais.append(cartao);
-});
 const campoPesquisa = document.querySelector("#pesquisa-material");
-
 const filtroLocalidade = document.querySelector("#filtro-localidade");
-
-const localidades = new Set();
-
-//Guarda a localidade
-materiais.forEach(function (material) {
-    localidades.add(material.localidade);
-});
-// Acrescenta as localidades
-localidades.forEach(function (localidade) {
-    const opcao = document.createElement("option");
-    opcao.value = localidade;
-    opcao.textContent = localidade;
-    filtroLocalidade.append(opcao);
-});
-
-const cartoes = document.querySelectorAll(".pagina-explorar .card-material");
-
 const mensagemResultado = document.querySelector("#resultado-pesquisa");
 
-// Cria a função que prepara o texto para a pesquisa.
+// Remove diferenças entre maiúsculas e acentos.
 function normalizarTexto(texto) {
-
-    const semEspacos = texto.trim();
-
-
-    const minusculas = semEspacos.toLowerCase();
-
-
-    const separado = minusculas.normalize("NFD");
-
-    const semAcentos = separado.replace(/[\u0300-\u036f]/g, "");
-
-    return semAcentos;
+    return (texto || "")
+        .trim()
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
 }
 
+// Filtra os cartões apresentados na página.
 function filtrarMateriais() {
     const pesquisa = normalizarTexto(campoPesquisa.value);
     const localidade = filtroLocalidade.value;
+    const cartoes = document.querySelectorAll(".lista-materiais .card-material");
+
     let quantidade = 0;
+
     cartoes.forEach(function (cartao) {
-        // Lê e normaliza o nome guardado no atributo data-nome.
-        const nome = normalizarTexto(cartao.dataset.nome);
+        const correspondeNome = normalizarTexto(cartao.dataset.nome).includes(pesquisa);
+        const correspondeLocalidade =
+            localidade === "" || cartao.dataset.localidade === localidade;
 
-        // Verifica se o nome contém o texto pesquisado; uma pesquisa vazia aceita todos.
-        const correspondeNome = nome.includes(pesquisa);
-
-        // Aceita todas as localidades quando a opção está vazia ou exige uma correspondência.
-        const correspondeLocalidade = localidade === "" || cartao.dataset.localidade === localidade;
-
-        // Exige que o cartão cumpra os dois critérios ao mesmo tempo.
         const mostrar = correspondeNome && correspondeLocalidade;
 
-        // Esconde o cartão quando ele não corresponde aos critérios.
         cartao.hidden = !mostrar;
 
-
         if (mostrar) {
-
-            quantidade += 1;
+            quantidade++;
         }
     });
 
-    // Verifica se a pesquisa ficou sem resultados.
-    if (quantidade === 0) {
+    mensagemResultado.textContent = quantidade === 0
+        ? "Nenhum material encontrado."
+        : `Materiais encontrados: ${quantidade}`;
+}
 
-        mensagemResultado.textContent = "Nenhum material encontrado.";
+// Cria os cartões com os materiais recebidos.
+function mostrarMateriais(materiais) {
+    listaMateriais.innerHTML = "";
+    filtroLocalidade.innerHTML = '<option value="">Todas as localidades</option>';
 
-    } else {
+    const localidades = new Set();
 
-        mensagemResultado.textContent = `Materiais encontrados: ${quantidade}`;
+    materiais.forEach(function (material) {
+        const cartao = document.createElement("div");
+        cartao.className = "card-material";
+        cartao.dataset.nome = material.nome;
+        cartao.dataset.localidade = material.localidade || "";
+        // Mostra a fotografia do material, quando existir.
+        if (material.imagem) {
+            const imagem = document.createElement("img");
+
+            imagem.src = "/" + material.imagem;
+            imagem.alt = material.nome;
+            imagem.className = "imagem-material";
+
+            cartao.append(imagem);
+        }
+        const titulo = document.createElement("h3");
+        titulo.textContent = material.nome;
+
+        const localidade = document.createElement("p");
+        localidade.textContent = `Localidade: ${material.localidade || "Não indicada"}`;
+
+        const estado = document.createElement("p");
+        estado.textContent = `Estado: ${material.estado}`;
+
+        const proprietario = document.createElement("p");
+        proprietario.textContent = `Proprietário: ${material.proprietario || "Não indicado"}`;
+
+        const link = document.createElement("a");
+        link.className = "link-detalhes";
+        link.href = `material.html?id=${encodeURIComponent(material.id)}`;
+        link.textContent = `Ver detalhes: ${material.nome}`;
+
+        cartao.append(titulo, localidade, estado, proprietario, link);
+        listaMateriais.append(cartao);
+
+        if (material.localidade) {
+            localidades.add(material.localidade);
+        }
+    });
+
+    localidades.forEach(function (localidade) {
+        const opcao = document.createElement("option");
+        opcao.value = localidade;
+        opcao.textContent = localidade;
+        filtroLocalidade.append(opcao);
+    });
+
+    filtrarMateriais();
+}
+
+// Carrega os materiais da base de dados através do Flask.
+async function carregarMateriais() {
+    mensagemResultado.textContent = "A carregar materiais...";
+
+    try {
+        const resposta = await fetch("/api/materiais");
+
+        if (!resposta.ok) {
+            throw new Error("Erro ao consultar materiais.");
+        }
+
+        const materiais = await resposta.json();
+        mostrarMateriais(materiais);
+
+    } catch (erro) {
+        mensagemResultado.textContent = "Não foi possível carregar os materiais.";
     }
 }
 
-// Atualiza os resultados sempre que o visitante escreve ou limpa a pesquisa.
 campoPesquisa.addEventListener("input", filtrarMateriais);
-
-// Atualiza os resultados sempre que o visitante muda a localidade.
 filtroLocalidade.addEventListener("change", filtrarMateriais);
 
-
-filtrarMateriais();
+carregarMateriais();

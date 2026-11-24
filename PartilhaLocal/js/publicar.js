@@ -22,8 +22,72 @@ formulario.addEventListener("input", function () {
     mensagemPublicacao.textContent = "";
 });
 
-formulario.addEventListener("submit", function (evento) {
-    evento.preventDefault();
 
-    mensagemPublicacao.textContent = "Os campos estão preenchidos corretamente. Nesta demonstraçao, o material nao foi guardado nem publicado.";
+//-------------------------------------------------
+//Regras para fotografia
+const campoFotografia = document.querySelector("#fotografia");
+const previewFotografia = document.querySelector("#preview-fotografia");
+const erroFotografia = document.querySelector("#erro-fotografia");
+
+let urlFotografia = null;
+
+campoFotografia.addEventListener("change", function () {
+    const ficheiro = campoFotografia.files[0];
+
+    previewFotografia.hidden = true;
+    previewFotografia.removeAttribute("src");
+    erroFotografia.textContent = "";
+    campoFotografia.setCustomValidity("");
+    mensagemPublicacao.textContent = "";
+
+    // Liberta a referência à fotografia anterior.
+    if (urlFotografia) {
+        URL.revokeObjectURL(urlFotografia);
+        urlFotografia = null;
+    }
+
+    if (!ficheiro) {
+        return;
+    }
+
+    const formatosPermitidos = [
+        "image/jpeg",
+        "image/png",
+        "image/webp"
+    ];
+
+    const tamanhoMaximo = 5 * 1024 * 1024;
+    let erro = "";
+
+    if (!formatosPermitidos.includes(ficheiro.type)) {
+        erro = "Escolha uma imagem JPG, PNG ou WebP.";
+    } else if (ficheiro.size > tamanhoMaximo) {
+        erro = "A fotografia deve ter, no máximo, 5 MB.";
+    }
+
+    if (erro) {
+        erroFotografia.textContent = erro;
+        campoFotografia.setCustomValidity(erro);
+        return;
+    }
+
+    // Cria um endereço temporário para mostrar o ficheiro local.
+    urlFotografia = URL.createObjectURL(ficheiro);
+    previewFotografia.src = urlFotografia;
+});
+
+previewFotografia.addEventListener("load", function () {
+    previewFotografia.hidden = false;
+});
+
+previewFotografia.addEventListener("error", function () {
+    if (!previewFotografia.getAttribute("src")) {
+        return;
+    }
+
+    previewFotografia.hidden = true;
+
+    const erro = "Não foi possível abrir esta imagem. Escolha outra fotografia.";
+    erroFotografia.textContent = erro;
+    campoFotografia.setCustomValidity(erro);
 });
