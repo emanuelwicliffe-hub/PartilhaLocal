@@ -105,10 +105,6 @@ def registo():
     return render_template("registo.html")
 
 
-
-# Página de login
-
-
 # Página de login
 @app.route("/login.html", methods=["GET", "POST"])
 def login():
@@ -185,10 +181,16 @@ def publicar():
         return "Precisa de iniciar sessão para publicar.", 401
 
     if request.method == "POST":
+       
         nome = request.form.get("nome", "").strip()
         categoria = request.form.get("categoria", "").strip()
-        localidade = request.form.get("localidade", "").strip()
+
+        localidade = " ".join(
+            request.form.get("localidade", "").split()
+        ).title()
+
         descricao = request.form.get("descricao", "").strip()
+
 
         # Recebe a fotografia enviada pelo formulário.
         fotografia = request.files.get("fotografia")
@@ -313,6 +315,7 @@ def publicar():
     return render_template("publicar.html")
 
 
+
 # Área do utilizador
 @app.route("/minha-conta")
 def minha_conta():
@@ -321,10 +324,98 @@ def minha_conta():
     if "id_utilizador" not in session:
         return "Precisa de iniciar sessão.", 401
 
-    # Obtém o nome guardado na sessão.
+    # Obtém os dados do utilizador da sessão.
     nome = session["nome"]
+    id_utilizador = session["id_utilizador"]
 
-    return render_template("minha-conta.html", nome=nome)
+    # Liga à base de dados.
+    conexao = ligar_base_dados()
+    cursor = conexao.cursor(dictionary=True)
+
+    try:
+        # Procura apenas os materiais deste utilizador.
+        cursor.execute("""
+            SELECT id_material, nome_material, localidade
+            FROM materiais
+            WHERE id_utilizador = %s
+            ORDER BY id_material DESC
+        """, (id_utilizador,))
+
+        materiais = cursor.fetchall()
+
+    finally:
+        cursor.close()
+        conexao.close()
+
+    # Envia o nome e os materiais para o HTML.
+    return render_template(
+        "minha-conta.html",
+        nome=nome,
+        materiais=materiais
+    )
+
+# Eliminar um material publicado pelo utilizador
+@app.route("/eliminar-material/<int:id_material>", methods=["POST"])
+def eliminar_material(id_material):
+
+    # Verifica se o utilizador iniciou sessão.
+    if "id_utilizador" not in session:
+        return "Precisa de iniciar sessão.", 401
+
+    ligacao = None
+    cursor = None
+
+    try:
+        ligacao = ligar_base_dados()
+        cursor = ligacao.cursor(dictionary=True)
+
+        # Confirma que o material pertence ao utilizador.
+        cursor.execute("""
+            SELECT id_material
+            FROM materiais
+            WHERE id_material = %s AND id_utilizador = %s
+        """, (id_material, session["id_utilizador"]))
+
+        material = cursor.fetchone()
+
+        if material is None:
+            return "Material não encontrado ou sem autorização.", 404
+
+        # Não elimina materiais com pedidos associados.
+        cursor.execute("""
+            SELECT COUNT(*) AS total
+            FROM pedidos_emprestimo
+            WHERE id_material = %s
+        """, (id_material,))
+
+        resultado = cursor.fetchone()
+
+        if resultado["total"] > 0:
+            return "Este material tem pedidos associados e não pode ser eliminado.", 409
+
+        # Elimina apenas o material do utilizador autenticado.
+        cursor.execute("""
+            DELETE FROM materiais
+            WHERE id_material = %s AND id_utilizador = %s
+        """, (id_material, session["id_utilizador"]))
+
+        ligacao.commit()
+
+        return redirect(url_for("minha_conta"))
+
+    except mysql.connector.Error:
+        if ligacao is not None:
+            ligacao.rollback()
+
+        return "Não foi possível eliminar o material.", 500
+
+    finally:
+        if cursor is not None:
+            cursor.close()
+
+        if ligacao is not None and ligacao.is_connected():
+            ligacao.close()
+
 
 # Terminar a sessão do utilizador
 @app.route("/terminar-sessao", methods=["POST"])

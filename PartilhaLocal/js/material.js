@@ -35,11 +35,32 @@ async function carregarMaterial() {
 
         // Apresenta os dados recebidos da base de dados.
         document.querySelector("#nome-material").textContent = material.nome;
+
         document.querySelector("#localidade-material").textContent =
             material.localidade || "Não indicada";
+
         document.querySelector("#estado-material").textContent = material.estado;
-        document.querySelector("#categoria-material").textContent = material.categoria;
-        document.querySelector("#descricao-material").textContent = material.descricao;
+
+        document.querySelector("#categoria-material").textContent =
+            material.categoria || "Não indicada";
+
+        document.querySelector("#proprietario-material").textContent =
+            material.proprietario || "Não indicado";
+
+        document.querySelector("#descricao-material").textContent =
+            material.descricao;
+
+        // Mostra a fotografia do material, quando existir.
+        const imagemMaterial = document.querySelector("#imagem-detalhe-material");
+
+        if (material.imagem) {
+            imagemMaterial.src = "/" + material.imagem.replace(/^\/+/, "");
+            imagemMaterial.alt = "Fotografia de " + material.nome;
+            imagemMaterial.hidden = false;
+        } else {
+            imagemMaterial.hidden = true;
+        }
+
 
         document.title = `${material.nome} | PartilhaLocal`;
 

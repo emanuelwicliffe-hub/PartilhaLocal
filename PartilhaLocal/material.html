@@ -13,15 +13,22 @@
         <div class="logo">
             <h1>Partilha<span>Local</span></h1>
         </div>
-        <nav>
+
+        <nav aria-label="Navegação principal">
             <ul>
-                <li><a href="index.html">Início</a></li>
-                <li><a href="explorar.html">Explorar</a></li>
+                <li><a href="/">Início</a></li>
+                <li><a href="/explorar.html">Explorar</a></li>
+
+                {% if session.get("id_utilizador") %}
+                <li><a href="/publicar.html">Publicar</a></li>
                 <li><a href="/minha-conta">Minha Conta</a></li>
-                <li><a href="login.html">Entrar</a></li>
-                <li><a href="registo.html">Registar</a></li>
+                {% else %}
+                <li><a href="/login.html">Entrar</a></li>
+                <li><a href="/registo.html">Registar</a></li>
+                {% endif %}
             </ul>
         </nav>
+
     </header>
 
     <main class="pagina-material">
@@ -29,32 +36,54 @@
             <a class="link-voltar" href="explorar.html">← Voltar aos materiais</a>
 
             <p id="mensagem-material" role="status"></p>
+
             <div id="conteudo-material" hidden>
-                <h2 id="nome-material"></h2>
 
-                <p>Material de exemplo para demonstração do PartilhaLocal.</p>
+                <div class="layout-detalhes">
 
-                <dl class="dados-material">
-                    <dt>Localidade</dt>
-                    <dd id="localidade-material"></dd>
+                    <!-- Fotografia à esquerda -->
+                    <div class="coluna-fotografia">
+                        <img id="imagem-detalhe-material" class="imagem-detalhe-material" alt="Fotografia do material"
+                            hidden>
+                    </div>
 
-                    <dt>Disponibilidade</dt>
-                    <dd id="estado-material"></dd>
 
-                    <dt>Categoria</dt>
-                    <dd id="categoria-material"></dd>
-                </dl>
+                    <div class="coluna-informacoes">
 
-                <h3>Descrição</h3>
-                <p id="descricao-material"></p>
-                <button class="botao-pedido" id="botao-pedido" type="button">
-                    Pedir emprestado
-                </button>
+                        <h2 id="nome-material"></h2>
 
-                <p id="aviso-pedido">
-                    Clique para iniciar uma conversa de demonstração sobre o empréstimo.
-                </p>
+                        <dl class="dados-material">
+                            <dt>Proprietário</dt>
+                            <dd id="proprietario-material"></dd>
+
+                            <dt>Localidade</dt>
+                            <dd id="localidade-material"></dd>
+
+                            <dt>Disponibilidade</dt>
+                            <dd id="estado-material"></dd>
+
+                            <dt>Categoria</dt>
+                            <dd id="categoria-material"></dd>
+                        </dl>
+
+                        <h3>Descrição</h3>
+                        <p id="descricao-material"></p>
+
+                        <button class="botao-pedido" id="botao-pedido" type="button">
+                            Pedir emprestado
+                        </button>
+
+                        <p id="aviso-pedido">
+                            Clique para iniciar uma conversa de demonstração
+                            sobre o empréstimo.
+                        </p>
+
+                    </div>
+
+                </div>
+
             </div>
+
         </article>
     </main>
     <footer class="rodape">

@@ -1,22 +1,26 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-PT">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PartilhaLocal</title>
-    <link rel="stylesheet" href="css/style.css">
+    <meta name="description" content="PartilhaLocal - Partilhe materiais com a sua comunidade.">
+    <title>PartilhaLocal | Partilhar é aproximar</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet"
+        href="https://cdn-uicons.flaticon.com/4.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
 </head>
 
 <body>
+
     <header class="cabecalho">
         <div class="logo">
             <h1>Partilha<span>Local</span></h1>
         </div>
-        <nav>
 
+        <nav aria-label="Navegação principal">
             <ul>
-                <li><a href="/">Início</a></li>
+                <li><a href="/" aria-current="page">Início</a></li>
                 <li><a href="/explorar.html">Explorar</a></li>
 
                 {% if session.get("id_utilizador") %}
@@ -24,75 +28,91 @@
                 <li><a href="/minha-conta">Minha Conta</a></li>
                 {% else %}
                 <li><a href="/login.html">Entrar</a></li>
-                <li><a href="/registo.html">Registar</a></li>
+                <li><a href="/registo.html" class="nav-registo">Criar conta</a></li>
                 {% endif %}
             </ul>
-
         </nav>
     </header>
+
     <main>
-        <section class="hero">
+
+        <!-- Apresentação principal -->
+        <section class="hero hero-inicio">
             <div class="texto-hero">
-                <h2>Partilhe o que tem.<br>Peça o que precisa.</h2>
-                <p>A plataforma local para emprestar e solicitar materiais entre pessoas da mesma comunidade.</p>
+                <span class="etiqueta-hero">
+                    <i class="fi fi-rr-users" aria-hidden="true"></i>
+                    Uma comunidade que partilha
+                </span>
+
+                <h2>
+                    Partilhar faz bem.
+                    <span>À comunidade também.</span>
+                </h2>
+
+                <p>
+                    Precisa de uma ferramenta ou de um material
+                    para usar por pouco tempo? Descubra o que
+                    outras pessoas têm para partilhar perto de si.
+                </p>
 
                 <div class="botoes-hero">
-                    <a href="explorar.html">Ver materiais</a>
-                    <a href="publicar.html">Publicar material</a>
+                    <a href="/explorar.html" class="botao-principal">
+                        Explorar materiais
+                    </a>
+
+                    {% if session.get("id_utilizador") %}
+                    <a href="/publicar.html" class="botao-secundario">
+                        Publicar material
+                    </a>
+                    {% else %}
+                    <a href="/registo.html" class="botao-secundario">
+                        Começar a partilhar
+                    </a>
+                    {% endif %}
+                </div>
+
+                <div class="nota-hero">
+                    <i class="fi fi-rr-handshake" aria-hidden="true"></i>
+                    <p>Mais partilha. Menos desperdício. Mais comunidade.</p>
                 </div>
             </div>
 
-            <div class="imagem-hero">
-                <div class="circulo-hero">
-                    <span>🤝</span>
-                    <p>Partilha local</p>
-                </div>
-            </div>
-        </section>
-        <section class="vantagens">
-            <h2>Por que usar o PartilhaLocal?</h2>
-            <div class="lista-vantagens">
-                <div class="caixa-vantagem">
-                    <h3>Fácil e seguro</h3>
-                    <p>Processo simples para pedir ou emprestar materiais.</p>
-                </div>
-                <div class="caixa-vantagem">
-                    <h3>Na sua comunidade</h3>
-                    <p>Conecte-se com pessoas próximas da sua área.</p>
-                </div>
-                <div class="caixa-vantagem">
-                    <h3>Sustentável</h3>
-                    <p>Reduza o consumo e promova o uso responsável dos recursos.</p>
-                </div>
-            </div>
-        </section>
-        <section class="materiais" id="materiais">
-            <h2>Materiais em destaque</h2>
-            <div class="lista-materiais">
-                <div class="card-material">
-                    <h3>Berbequim</h3>
-                    <p>Localidade: Leiria</p>
-                    <p>Estado: Disponível</p>
-                </div>
-                <div class="card-material">
-                    <h3>Liquidificador</h3>
-                    <p>Localidade: Marinha Grande</p>
-                    <p>Estado: Disponível</p>
+            <div class="visual-hero" aria-label="Ilustração de partilha de materiais">
+                <div class="visual-fundo"></div>
+
+                <div class="visual-centro">
+                    <img src="/imagens/partilha.gif" alt="Ícone animado de partilha" class="icone-central-animado">
+                    <strong>PartilhaLocal</strong>
+                    <small>Juntos fazemos mais</small>
                 </div>
 
-                <div class="card-material">
-                    <h3>Escada</h3>
-                    <p>Localidade: Leiria</p>
-                    <p>Estado: Disponível</p>
+
+                <div class="visual-item visual-item-1">
+                    <img src="/imagens/ferramentas.gif" alt="Ferramentas animadas" class="icone-visual-animado">
                 </div>
-            </div>
-        </section>
-    </main>
+
+                <div class="visual-item visual-item-2">
+                    <img src="/imagens/livros.gif" alt="Livros animados" class="icone-visual-animado">
+                </div>
+
+                <div class="visual-item visual-item-3">
+                    <img src="/imagens/sustentabilidade.gif" alt="Sustentabilidade animada"
+                        class="icone-visual-animado">
+                </div>
+
+
+            </div> <!-- Fecha visual-hero -->
+
+        </section> <!-- Fecha hero -->
+
+    </main> <!-- Fecha main -->
+
     <footer class="rodape">
         <h2>Partilha<span>Local</span></h2>
         <p>Partilhe materiais. Aproxime a comunidade.</p>
         <small>Projeto desenvolvido em contexto de formação.</small>
     </footer>
+
 </body>
 
 </html>

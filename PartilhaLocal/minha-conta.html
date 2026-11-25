@@ -14,15 +14,16 @@
             <h1>Partilha<span>Local</span></h1>
         </div>
 
-        <nav>
+
+        <nav aria-label="Navegação principal">
             <ul>
-                <li><a href="index.html">Início</a></li>
-                <li><a href="explorar.html">Explorar</a></li>
-                <li><a href="/minha-conta">Minha Conta</a></li>
-                <li><a href="login.html">Entrar</a></li>
-                <li><a href="registo.html">Registar</a></li>
+                <li><a href="/">Início</a></li>
+                <li><a href="/explorar.html">Explorar</a></li>
+                <li><a href="/publicar.html">Publicar</a></li>
+                <li><a href="/minha-conta" aria-current="page">Minha Conta</a></li>
             </ul>
         </nav>
+
     </header>
 
     <main>
@@ -31,8 +32,39 @@
 
             <p>Bem-vindo, {{ nome }}!</p>
 
-            <p>Aqui poderá gerir os seus materiais e empréstimos.</p>
+
+            <p>Consulte os materiais que publicou na comunidade.</p>
+
+            <div class="meus-materiais">
+                <h3>Os meus materiais</h3>
+
+                {% if materiais %}
+                {% for material in materiais %}
+                <div class="meu-material">
+                    <h4>{{ material.nome_material }}</h4>
+                    <p>Localidade: {{ material.localidade }}</p>
+
+                    <a href="/material.html?id={{ material.id_material }}">
+                        Ver detalhes
+                    </a>
+                    <form action="/eliminar-material/{{ material.id_material }}" method="POST"
+                        onsubmit="return confirm('Tem a certeza de que pretende eliminar este material?');">
+
+                        <button type="submit" class="botao-eliminar">
+                            Eliminar
+                        </button>
+                    </form>
+                </div>
+                {% endfor %}
+                {% else %}
+                <p>Ainda não publicou nenhum material.</p>
+                {% endif %}
+            </div>
+
             <div class="acoes-conta">
+                <a href="/publicar.html" class="botao-conta">
+                    Publicar novo material
+                </a>
                 <a href="explorar.html" class="botao-conta">
                     Explorar materiais
                 </a>

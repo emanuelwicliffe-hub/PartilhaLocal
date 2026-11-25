@@ -24,7 +24,7 @@ function filtrarMateriais() {
     cartoes.forEach(function (cartao) {
         const correspondeNome = normalizarTexto(cartao.dataset.nome).includes(pesquisa);
         const correspondeLocalidade =
-            localidade === "" || cartao.dataset.localidade === localidade;
+            localidade === "" || cartao.dataset.localidade === normalizarTexto(localidade);
 
         const mostrar = correspondeNome && correspondeLocalidade;
 
@@ -51,7 +51,7 @@ function mostrarMateriais(materiais) {
         const cartao = document.createElement("div");
         cartao.className = "card-material";
         cartao.dataset.nome = material.nome;
-        cartao.dataset.localidade = material.localidade || "";
+        cartao.dataset.localidade = normalizarTexto(material.localidade || "");
         // Mostra a fotografia do material, quando existir.
         if (material.imagem) {
             const imagem = document.createElement("img");
@@ -83,14 +83,19 @@ function mostrarMateriais(materiais) {
         listaMateriais.append(cartao);
 
         if (material.localidade) {
-            localidades.add(material.localidade);
+            localidades.add(normalizarTexto(material.localidade));
         }
     });
 
     localidades.forEach(function (localidade) {
         const opcao = document.createElement("option");
+
         opcao.value = localidade;
-        opcao.textContent = localidade;
+
+
+        opcao.textContent =
+            localidade.charAt(0).toUpperCase() + localidade.slice(1);
+
         filtroLocalidade.append(opcao);
     });
 
